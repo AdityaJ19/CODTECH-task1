@@ -25,3 +25,4 @@ The Simple Calculator ensures a seamless user experience with responsive buttons
 
 Conclusion:
 This project demonstrates effective use of Java Swing for GUI development, integrating essential programming concepts such as event handling and modular design. The Simple Calculator serves as a practical tool and a solid foundation for learning and expanding Java-based GUI applications.
+![Calculator 6_22_2024 5_25_51 PM](https://github.com/AdityaJ19/CODTECH-task1/assets/163170139/cfeb2806-97b7-4b47-bd30-97dff52de3d0)
