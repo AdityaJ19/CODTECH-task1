@@ -1,41 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int str_len(char* str){
+int str_len(char* str) {
     int len = 0;
-    while(str[len] != '\0'){
+    while (str[len] != '\0') {
         len++;
     }
     return len;
 }
 
-char* compressString(char* string){
+char* compressString(char* string) {
     int len = str_len(string);
+    char* output = (char*)malloc((2 * len + 1) * sizeof(char)); // Allocate sufficient memory
+    int k = 0, count = 1;
 
-    char* output = (char*)malloc((len+1)*sizeof(char));
-    int k = 0;
-
-    for(int i = 0; i<len; i++){
-        while(string[i] == string[i+1]){
-            k++;
-
-            if(string[k] > len){
-                return string;
-            }
+    for (int i = 0; i < len; i++) {
+        if (string[i] == string[i + 1]) {
+            count++;
+        } else {
+            k += sprintf(output + k, "%c%d", string[i], count);
+            count = 1;
         }
     }
-    output[k] = '\0';
+
+    output[k] = '\0'; // Null-terminate the compressed string
     return output;
 }
 
-int main(){
-    char* string[100];
+int main() {
+    char string[100];
     printf("Enter the string: ");
     fgets(string, sizeof(string), stdin);
 
-    char* output = compressString(*string);
-    printf("The output of the compressed string is: %s", output);
+    // Remove newline character if present
+    int len = str_len(string);
+    if (len > 0 && string[len - 1] == '\n') {
+        string[len - 1] = '\0';
+    }
+
+    char* output = compressString(string);
+    printf("The output of the compressed string is: %s\n", output);
     free(output);
     return 0;
-    
 }
